@@ -1,0 +1,49 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "my python widget",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "PlantCareIntent",
+                    "slots": [],
+                    "samples": [
+                        "have i watered my plant",
+                        "water my plant",
+                        "i want to water my plant",
+                        "did I water my plant",
+                        "is my plant watered"
+                    ]
+                },
+                {
+                    "name": "unwaterplant",
+                    "slots": [],
+                    "samples": [
+                        "remove watering",
+                        "unwater plant"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
