@@ -1,0 +1,133 @@
+{
+    "type": "APL",
+    "version": "2023.1",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.6.0"
+        }
+    ],
+    "extensions": [
+        {
+            "name": "DataStore",
+            "uri": "alexaext:datastore:10"
+        }
+    ],
+    "settings": {
+        "DataStore": {
+            "dataBindings": [
+                {
+                    "namespace": "plantCareReminder",
+                    "key": "plantData",
+                    "dataBindingName": "plantData",
+                    "dataType": "OBJECT"
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "alexaPhotoData"
+        ],
+        "bind": [
+            {
+                "name": "currentDate",
+                "value": "${Time.format('YYYY-MM-DD', localTime)}"
+            },
+            {
+                "name": "lastWateredDateRemote",
+                "value": "${plantData.lastWateredDate}"
+            },
+            {
+                "name": "lastWateredDateLocal",
+                "value": "${lastWateredDateRemote}"
+            },
+            {
+                "name": "plantWateredToday",
+                "value": "${currentDate == lastWateredDateRemote || currentDate == lastWateredDateLocal}"
+            }
+        ],
+        "items": [
+            {
+                "type": "Container",
+                "height": "100vh",
+                "width": "100vw",
+                "items": [
+                    {
+                        "type": "AlexaImage",
+                        "imageRoundedCorner": false,
+                        "imageSource": "${alexaPhotoData.backgroundImage.sources[0].url}",
+                        "imageWidth": "100%",
+                        "imageHeight": "100%",
+                        "imageScale": "best-fill"
+                    },
+                    {
+                        "type": "VectorGraphic",
+                        "position": "absolute",
+                        "height": "100%",
+                        "width": "100%",
+                        "source": "alexaPhotoOverlayScrim",
+                        "scale": "fill"
+                    },
+                    {
+                        "type": "TouchWrapper",
+                        "position": "absolute",
+                        "id": "openSkill",
+                        "item": {
+                            "type": "AlexaHeader",
+                            "position": "absolute",
+                            "headerTitle": "${alexaPhotoData.title}"
+                        },
+                        "onPress": [
+                            {
+                                "type": "SendEvent",
+                                "arguments": [
+                                    "openSkill"
+                                ],
+                                "flags": {
+                                    "interactionMode": "STANDARD"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Container",
+                        "position": "absolute",
+                        "bottom": "0",
+                        "items": [
+                            {
+                                "type": "AlexaPhotoCaption",
+                                "primaryText": "${alexaPhotoData.primaryText}",
+                                "secondaryText": "Last watered: ${lastWateredDateLocal || '-'}"
+                            },
+                            {
+                                "type": "AlexaFooterActionButton",
+                                "buttonText": "${plantWateredToday ? 'Plant already watered' : alexaPhotoData.buttonText}",
+                                "disabled": "${plantWateredToday}",
+                                "primaryAction": [
+                                    {
+                                        "type": "SetValue",
+                                        "componentId": ":root",
+                                        "property": "lastWateredDateLocal",
+                                        "value": "${currentDate}"
+                                    },
+                                    {
+                                        "type": "SendEvent",
+                                        "arguments": [
+                                           "plantWateredWidget",
+                                           "${currentDate}"
+                                       ],
+                                        "flags": {
+                                           "interactionMode": "INLINE"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
