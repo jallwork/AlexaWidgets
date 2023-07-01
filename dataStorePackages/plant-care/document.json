@@ -1,0 +1,17 @@
+{
+    "type": "APL",
+    "version": "2023.1",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.6.0"
+        }
+    ],
+    "extensions": [
+        {
+            "name": "DataStore",
+            "uri": "alexaext:datastore:10"
+        }
+    ]
+}
