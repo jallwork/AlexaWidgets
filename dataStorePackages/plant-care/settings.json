@@ -1,0 +1,12 @@
+{
+    "DataStore": {
+        "dataBindings": [
+            {
+                "namespace": "plantCareReminder",
+                "key": "plantData",
+                "dataBindingName": "plantData",
+                "dataType": "OBJECT"
+            }
+        ]
+    }
+}
