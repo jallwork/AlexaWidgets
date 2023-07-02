@@ -34,8 +34,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 # You can get these values from Skill Dashboard > Tools > Permissions > Alexa Skill Messaging section. 
-ALEXACLIENTID = "amzn1.application-oa2-client.aefa2ff2b13841a48c7fd53dee1d488b"
-ALEXACLIENTSECRET = "amzn1.oa2-cs.v1.c60552d52f32ad4e784c21b2b401116de92aeb25b02903e57f1d987caa363672"
+ALEXACLIENTID = "your ID here (in the quotes)"
+ALEXACLIENTSECRET = "your Alexa secret here (in the quotes)" 
 
 ddb_region = os.environ.get('DYNAMODB_PERSISTENCE_REGION')
 ddb_table_name = os.environ.get('DYNAMODB_PERSISTENCE_TABLE_NAME')
