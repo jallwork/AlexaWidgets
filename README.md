@@ -19,3 +19,7 @@ Plant care widget in action: https://youtu.be/Ooj_GGOLfo4
 word.docx instructions at:
 
 https://github.com/jallwork/AlexaWidgets/blob/main/Python%20Gadget%20Alexa%20Skill.docx
+
+If you like this, buy my book:
+
+https://www.elektor.com/programming-voice-controlled-iot-applications-with-alexa-and-raspberry-pi
